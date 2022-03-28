@@ -1,0 +1,36 @@
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
+  class="row-border hover compact table table-sm table-bordered"
+>
+  <thead>
+    <tr>
+      <th>Banco</th>
+      <th>Cuenta</th>
+      <th>Serie</th>
+      <th>Número</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="cheques?.length != 0">
+    <tr *ngFor="let cheque of cheques">
+      <td class="align-middle">{{ cheque.banco }}</td>
+      <td class="align-middle text-right">{{ cheque.cuenta }}</td>
+      <td class="align-middle text-right">{{ cheque.serie }}</td>
+      <td class="align-middle text-right">{{ cheque.numero }}</td>
+      <td class="align-middle text-center">
+        <div class="btn-group" role="group" aria-label="buttons group acciones">
+          <button title="Emitir" mdbBtn type="button" color="purple" size="sm" class="rounded" mdbWavesEffect (click)="onEmitir(cheque.id);">
+            <mdb-icon fas icon="far fa-edit"></mdb-icon>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="cheques?.length == 0">
+    <tr>
+      <td colspan="3" class="no-data-available">¡No se encontraron datos para cargar!...</td>
+    </tr>
+  </tbody>
+</table>

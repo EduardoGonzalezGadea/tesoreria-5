@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+
+.dropdown-toggle::after {
+    transition: transform 0.15s linear;
+}
+
+.show.dropdown .dropdown-toggle::after {
+    transform: translateY(3px);
+}
+
+.dropdown-hover-menu::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: -3px;
+  height: 3px;
+  /*border: 1px solid black;*/
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+    pointer-events: none;   // Add this, to prevent clicking dropdown's default click function
+}
+
+.text-white-yellow {
+    color: white !important;
+}
+
+.text-white-yellow:hover {
+    color: yellow !important;
+}
+
+.text-black-blue {
+    color: black !important;
+}
+
+.text-black-blue:hover {
+    color: darkblue !important;
+}

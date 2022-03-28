@@ -1,0 +1,43 @@
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
+  class="row-border hover compact table table-sm table-bordered"
+>
+  <thead>
+    <tr>
+      <th>Artículo</th>
+      <th>Apartado</th>
+      <th>Descripción</th>
+      <th>Valor</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="articulados?.length != 0">
+    <tr *ngFor="let articulado of articulados">
+      <td class="align-middle">
+        {{ articulado.articulo }}
+        <input type="hidden" value="{{articulado.id}}">
+      </td>
+      <td class="align-middle">{{ articulado.apartado }}</td>
+      <td class="align-middle">{{ articulado.descripcion | uppercase }}</td>
+      <td *ngIf="articulado.articulo != 184">{{ articulado.ur }} U.R.</td>
+      <td *ngIf="articulado.articulo == 184">$ {{ articulado.ur }}</td>
+      <td class="align-middle">
+        <div class="btn-group" role="group" aria-label="buttons group acciones">
+          <button title="Editar" mdbBtn type="button" color="success" size="sm" class="rounded" mdbWavesEffect (click)="onEditar(articulado.id);">
+            <mdb-icon fas icon="pen"></mdb-icon>
+          </button>
+          <button title="Borrar" mdbBtn type="button" color="danger" size="sm" class="rounded" mdbWavesEffect (click)="onBorrar(articulado.id);">
+            <mdb-icon fas icon="trash"></mdb-icon>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="articulados?.length == 0">
+    <tr>
+      <td colspan="3" class="no-data-available">¡No se encontraron datos para cargar!...</td>
+    </tr>
+  </tbody>
+</table>

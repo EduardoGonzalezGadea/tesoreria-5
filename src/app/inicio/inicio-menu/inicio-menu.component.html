@@ -1,0 +1,60 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-md navbar-dark unique-color sticky-top" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand>
+        <a class="navbar-brand" href="#">
+            <img src="assets/images/logos/tesoreria-logo.png" height="30" alt="">
+        </a>
+    </mdb-navbar-brand>
+
+    <!-- Collapsible content -->
+    <links>
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+            <!-- CAJAS -->
+            <li class="nav-item dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                    SECTOR CAJAS<span class="caret"></span>
+                </a>
+            <div *dropdownMenu class="dropdown-menu dropdown-unique" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="cheques">Cheques</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="cuentas-personales">Cuentas Personales</a>
+                </div>
+            </li>
+
+            <!-- OPERATIVO -->
+            <li class="nav-item dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                    SECTOR OPERATIVO<span class="caret"></span>
+                </a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="multas/articulado">Articulado de multas del C.P.T.</a>
+                </div>
+            </li>
+
+        </ul>
+    
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+                <a class="nav-link">
+                <div class="btn-group" mdbDropdown>
+                    <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                    <a class="dropdown-item" href="#">Abrir sesión</a>
+                    <a class="dropdown-item" href="#">Modificar constraseña</a>
+                    <a class="dropdown-item" href="#">Registrar nuevo usuario</a>
+                    <div class="divider dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Cerrar sesión</a>
+                    </div>
+                </div>
+                </a>
+            </li>
+        </ul>
+    </links>
+    <!-- Collapsible content -->
+    
+</mdb-navbar>
+<!--/.Navbar-->

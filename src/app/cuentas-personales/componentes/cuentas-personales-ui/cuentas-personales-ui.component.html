@@ -1,0 +1,16 @@
+<!-- CHEQUES DISPONIBLES -->
+<div class="card mt-3" style="border: purple solid 2px !important" style="background:url(../../../../assets/images/fondos/freepiks/white-2723481_1920.jpg) no-repeat; background-size: 200%;">
+    <div class="card-header purple darken-2 white-text d-flex justify-content-between align-items-center">
+        <strong>
+            Cuentas financieras personales
+        </strong>
+        <div class="btn-group" role="group" aria-label="buttons group nuevo">
+            <button title="Nuevo" mdbBtn type="button" color="primary" size="sm" class="rounded" mdbWavesEffect (click)="onNew();">
+                <mdb-icon fas icon="plus"></mdb-icon> NUEVO
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <app-cuentas-personales-listar></app-cuentas-personales-listar>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<table
+  #tblCuentasPersonales
+  id="tblCuentasPersonales"
+  datatable
+  [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
+  class="row-border hover compact table table-sm table-bordered" 
+  style="font-size: 12px !important;"
+>
+  <thead>
+    <tr>
+      <th>CÉDULA</th>
+      <th>NOMBRES Y APELLIDOS</th>
+      <th>INST. FINANCIERA</th>
+      <th>CTA.ANT.</th>
+      <th>CTA.ACT.</th>
+      <th>OBSERV.</th>
+      <th>ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="cuentasPersonales?.length != 0">
+    <tr *ngFor="let item of cuentasPersonales">
+      <td class="align-middle text-right">{{ item.cedula }}</td>
+      <td class="align-middle">{{ item.nombres }} {{ item.apellidos }}</td>
+      <td class="align-middle">{{ item.financiera }}</td>
+      <td class="align-middle">{{ item.cuenta_anterior }}</td>
+      <td class="align-middle">{{ item.cuenta_actual }}</td>
+      <td class="align-middle">{{ item.observaciones }}</td>
+      <td class="align-middle">
+        <div class="btn-group" role="group" aria-label="buttons group acciones">
+          <button title="Editar" mdbBtn type="button" color="success" size="sm" class="rounded" mdbWavesEffect (click)="onEditar(item.id);">
+            <mdb-icon fas icon="pen"></mdb-icon>
+          </button>
+          <button title="Borrar" mdbBtn type="button" color="danger" size="sm" class="rounded" mdbWavesEffect (click)="onBorrar(item.id, item.nombres, item.apellidos, item.cedula);">
+            <mdb-icon fas icon="trash"></mdb-icon>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="cuentasPersonales?.length == 0">
+    <tr>
+      <td colspan="6" class="no-data-available">¡No se encontraron datos para cargar!...</td>
+    </tr>
+  </tbody>
+</table>
