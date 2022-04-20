@@ -1,13 +1,28 @@
-<!-- CHEQUES DISPONIBLES -->
-<div class="card mt-3" style="border: purple solid 2px !important">
-    <div class="card-header purple darken-2 white-text">
-        <strong>
-            Cheques disponibles
-        </strong>
+<div class="row col-12">
+    <!-- CHEQUES DISPONIBLES -->
+    <div class="card mt-3 col-12 col-lg-8 p-0" style="border: purple solid 2px !important">
+        <div class="card-header purple darken-2 white-text">
+            <strong>
+                Cheques disponibles
+            </strong>
+        </div>
+        <div class="card-body">
+            <!-- <app-cheques-listar-disponibles (emitirEvent)="receiveEdit($event)"></app-cheques-listar-disponibles> -->
+            <app-cheques-listar-disponibles></app-cheques-listar-disponibles>
+        </div>
     </div>
-    <div class="card-body">
-        <app-cheques-listar-disponibles></app-cheques-listar-disponibles>
-    </div>
+    <!-- CHEQUES EMITIR -->
+    <div class="card mt-3 col-12 col-lg-4 p-0" style="border: purple solid 2px !important">
+        <div class="card-header purple darken-2 white-text">
+            <strong>
+                Emitir cheque
+            </strong>
+        </div>
+        <div class="card-body">
+            <!-- <app-cheques-emitir [emitirID]="actualID"></app-cheques-emitir> -->
+            <app-cheques-emitir></app-cheques-emitir>
+        </div>
+    </div>    
 </div>
 <!-- CHEQUES EMITIDOS -->
 <div class="card mt-3" style="border: teal solid 2px !important">

@@ -22,7 +22,7 @@ export class CuentasPersonalesNuevoComponent implements OnInit {
   cuenta_actual = new FormControl('', [
     Validators.required
   ]);
-  financiera = new FormControl('', [
+  financiera = new FormControl(1, [
     Validators.required
   ]);
 
@@ -40,7 +40,6 @@ export class CuentasPersonalesNuevoComponent implements OnInit {
 
     this.cuentasPersonalesService.verFinancieras().subscribe((data: any) => {
       this.financieras = data.data;
-      console.warn(this.financieras);
     });
 
   }
@@ -109,6 +108,13 @@ export class CuentasPersonalesNuevoComponent implements OnInit {
 
   onCancel() {
     this.router.navigateByUrl("cuentas-personales");
+  }
+
+  compararFinancieras(op1: any, op2: any) {
+    if(op1 == null || op2 == null) {
+      return false;
+    }
+    return op1 === op2;
   }
 
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 
 import { ChequesService } from './../../servicios/cheques.service';
 import { ChequesModel } from '../../modelos/cheques-model';
@@ -12,13 +13,15 @@ import { ChequesModel } from '../../modelos/cheques-model';
 })
 export class ChequesEmitirComponent implements OnInit {
 
+  // @Input() emitirID!: number | null;
+  emitirID!: number | null;
+
   formGroup!: FormGroup;
 
-  id!: number;
+  private emitirID$: any = null;
   cheque!: ChequesModel;
 
   constructor(
-    private rutaActiva: ActivatedRoute,
     private chequesService: ChequesService,
     private router: Router,
     private formBuilder: FormBuilder
@@ -26,15 +29,17 @@ export class ChequesEmitirComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.rutaActiva.params.subscribe(
-      (params: Params) => {
-        this.id = params.id;
-        this.chequesService.verUno(this.id).subscribe((data: any) => {
-          this.cheque = data.data[0];
-          this.formGroup.patchValue(this.cheque);
-        });
-      }
-    );
+    this.emitirID$ = this.chequesService.getEmitirID$();
+    this.emitirID$.subscribe((emitirID: number | null) => {
+      this.emitirID = emitirID;
+
+      this.chequesService.verUno(this.emitirID).subscribe((data: any) => {
+        this.cheque = data.data[0];
+        this.formGroup.patchValue(this.cheque);
+      });
+
+    });
+
 
     this.buildForm();
 

@@ -3,14 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
 
 import { ChequesModel } from '../modelos/cheques-model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChequesService {
 
-  url: string = "";
+  private url: string = "";
+
+  emitirID: number | null = null;
+  private emitirID$ = new Subject<number | null>();
 
   constructor(
     private httpClient: HttpClient,
@@ -32,8 +35,17 @@ export class ChequesService {
     return this.httpClient.get<ChequesModel[]>(this.url + 'cheques/cheques.php?emitidos=true');
   }
 
-  verUno(id: number): Observable<ChequesModel[]> {
+  verUno(id: number | null = this.emitirID): Observable<ChequesModel[]> {
     return this.httpClient.get<ChequesModel[]>(this.url + 'cheques/cheques.php?id=' + id);
+  }
+
+  onEmitir(id: number | null) {
+    this.emitirID = id;
+    this.emitirID$.next(this.emitirID);
+  }
+
+  getEmitirID$(): Observable<number | null> {
+    return this.emitirID$.asObservable();
   }
 
 }

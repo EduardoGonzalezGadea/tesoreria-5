@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -12,10 +12,13 @@ import { ChequesModel } from '../../modelos/cheques-model';
 })
 export class ChequesListarDisponiblesComponent implements OnInit {
 
+  // @Output() emitirEvent = new EventEmitter<number | null>();
+
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
   cheques: ChequesModel[] = [];
+  emitirID: number | null = null;
 
   constructor(
     private chequesService: ChequesService,
@@ -74,12 +77,16 @@ export class ChequesListarDisponiblesComponent implements OnInit {
       this.cheques = data.data;
       // Calling the DT trigger to manually render the table
       this.dtTrigger.next();
+      // Comunicar cheque disponible para emitir
+      this.onEmitir(this.cheques[0]['id']);
     });
     
   }
 
   onEmitir(id: number | null): void {
-    this.router.navigate(['/', 'cheques', 'emitir', id]);
+    // this.emitirID = id;
+    // this.emitirEvent.emit(this.emitirID);
+    this.chequesService.onEmitir(id);
   }
 
 }

@@ -2,11 +2,11 @@
 
     <form [formGroup]="formGroup">
 
-    <div class="card-header h4" style="background:url(../../../../assets/images/fondos/freepiks/tree-5267370_1920.jpg) no-repeat; background-size: 100%; background-position: 50%;">
+    <div class="card-header h4" style="background:url(assets/images/fondos/freepiks/sky-6544632_1920.jpg) no-repeat; background-size: 100%; background-position: 50%;">
         <div style="text-shadow: 1px 1px white">Editar una cuenta financiera personal</div>
     </div>
 
-    <div class="card-body" style="background:url(../../../../assets/images/fondos/freepiks/4907157.jpg) no-repeat; background-size: 200%;">
+    <div class="card-body" style="background:url(assets/images/fondos/freepiks/4907157.jpg) no-repeat; background-size: 200%;">
 
         <div class="form-row">
             <div class="form-group col-12 col-md-6">
@@ -46,7 +46,7 @@
                 <label>Financiera</label>
                 <select formControlName="financiera" name="financiera" class="form-control" tabindex="4">
                     <option disabled>Seleccione una financiera</option>
-                    <option *ngFor="let itemF of financieras">{{itemF.financiera}}</option>
+                    <option *ngFor="let itemF of financieras" [value]="itemF.financiera">{{itemF.financiera}}</option>
                 </select>
             </div>
         </div>
@@ -89,7 +89,7 @@
 
     </div>
 
-    <div class="card-footer d-flex justify-content-end" style="background:url(../../../../assets/images/fondos/freepiks/tree-5267370_1920.jpg) no-repeat; background-size: 100%; background-position: bottom;">
+    <div class="card-footer d-flex justify-content-end" style="background:url(assets/images/fondos/freepiks/sky-6544632_1920.jpg) no-repeat; background-size: 100%; background-position: bottom;">
         <button class="btn btn-secondary mr-2" tabindex="11" (click)="onCancel()">
             Cancelar
         </button>

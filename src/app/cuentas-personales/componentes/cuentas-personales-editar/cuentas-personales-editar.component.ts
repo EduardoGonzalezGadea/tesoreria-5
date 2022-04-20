@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -17,6 +17,7 @@ export class CuentasPersonalesEditarComponent implements OnInit {
   formGroup!: FormGroup;
 
   id!: number;
+  indice: number = 0;
   cuentaPersonal!: CuentasPersonalesModel;
   financieras: any[] = [];
 
@@ -38,18 +39,13 @@ export class CuentasPersonalesEditarComponent implements OnInit {
         });
       }
     );
-
-    this.buildForm();
     
     this.cuentasPersonalesService.verFinancieras().subscribe((data: any) => {
       this.financieras = data.data;
-      console.warn(this.financieras);
     });
 
-  }
+    this.buildForm();
 
-  ngAfterViewInit() {
-    this.formGroup.get('financiera')?.setValue(this.cuentaPersonal.financiera);
   }
 
   private buildForm(){

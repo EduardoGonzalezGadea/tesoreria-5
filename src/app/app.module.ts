@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ArticuladoService } from './multas/articulado/servicios/articulado.service';
+
+import { SpinnerCargandoModule } from './spinner/modulos/spinner-cargando/spinner-cargando.module';
+import { SpinnerCargandoInterceptor } from './spinner/interceptor/spinner-cargando.interceptor';
 
 import { ArticuladoListarComponent } from './multas/articulado/componentes/articulado-listar/articulado-listar.component';
 import { InicioMenuComponent } from './inicio/inicio-menu/inicio-menu.component';
@@ -46,19 +50,25 @@ import { CuentasPersonalesNuevoComponent } from './cuentas-personales/componente
     CuentasPersonalesUiComponent,
     CuentasPersonalesListarComponent,
     CuentasPersonalesEditarComponent,
-    CuentasPersonalesNuevoComponent
+    CuentasPersonalesNuevoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     DataTablesModule,
     HttpClientModule,
+    SpinnerCargandoModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot()
   ],
-  providers: [ArticuladoService],
+  providers: [
+    ArticuladoService,
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerCargandoInterceptor, multi: true },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
